@@ -1,0 +1,29 @@
+.Header {
+    display: flex;
+    background-color: #020203;
+    grid-column: 1/-1;
+    grid-row: 1;
+    align-items: center;
+    padding: 0 28px;
+    z-index: 3;
+    >img {
+        height: 60.93px;
+    }
+    nav {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-around;
+        a {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 24px;
+            color: white;
+            text-decoration: none;
+            &:hover {
+                color: #f00;
+            }
+        }
+    }
+}

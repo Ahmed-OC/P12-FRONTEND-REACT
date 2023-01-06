@@ -1,5 +1,8 @@
 .App {
-  text-align: center;
+  display: grid;
+  grid-template-columns: 117px 1fr;
+  grid-template-rows: 90px 1fr;
+  min-height: 100vh;
 }
 
 .App-logo {

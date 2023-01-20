@@ -1,0 +1,34 @@
+.KeyData {
+    background: #fbfbfb;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+    border-radius: 5px;
+    width: 258px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 32px 0 32px 32px;
+    gap: 24px;
+  
+    &_IconContainer {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &_TextContainer {
+      > p:first-child {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24px;
+        color: #282d30;
+        margin-bottom: 2px;
+      }
+      > p:nth-child(2) {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 24px;
+        color: #74798c;
+      }
+    }
+  }

@@ -1,9 +1,11 @@
 import Activity from "./components/Activity/Activity";
 import Header from "./components/Header/Header";
+import KeyData from "./components/KeyData/KeyData";
 import RadarCharts from "./components/RadarChart/RadarCharts";
 import RadialBarChart from "./components/RadialBarChart/RadialBarChart";
 import SideBar from "./components/SideBar/SideBar";
 import style from "./Layout.module.scss";
+import proteinIcon from "./assets/icons/KeyData/protein.svg"
 
 function Layout() {
   const activities = [
@@ -69,6 +71,7 @@ function Layout() {
         <Activity activities={activities} />
         <RadarCharts id={12} />
         <RadialBarChart id={18} />
+        <KeyData icon={proteinIcon} value='155g' type='Proteines' backgroundColor='rgba(74, 184, 255, 0.1)'/>
       </div>
       <SideBar />
     </>

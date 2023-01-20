@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import style from "./RadarCharts.module.scss";
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Label } from 'recharts';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, Label } from 'recharts';
 import { getUserPerformanceById } from '../../api/User';
 
 type Props = {
   id: number
-};
+}
 type dataCharts = {
   subject: string
   A: number
   fullMark: number
 }
+
 function RadarCharts({ id }: Props) {
   const [dataUser, setDataUser] = useState<dataCharts[]>([])
 

@@ -1,0 +1,38 @@
+.Activity {
+    width: 835px;
+    height: auto;
+    background-color: #fbfbfb;
+    position: relative;
+    padding-top: 24px;
+    padding-left: 32px;
+    > h2 {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #20253a;
+      position: absolute;
+    }
+  }
+  .customizedLegend {
+    font-size: 14px;
+    > svg {
+      margin-right: 12px;
+    }
+    font-weight: 500;
+    line-height: 24px;
+    color: #74798c;
+  }
+  
+  
+  
+  .customTooltip {
+    background-color: #e60000;
+    padding: 6px;
+    gap: 10px;
+    font-size: 7px;
+    font-weight: 500;
+    line-height: 24px;
+    color: white;
+    outline: none;
+    text-align: center;
+  }

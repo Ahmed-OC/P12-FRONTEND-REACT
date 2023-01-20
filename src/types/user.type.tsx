@@ -6,7 +6,8 @@ export type user = {
             lastName: string
             age: number
         }
-        score: number
+        score?: number
+        todayScore?: number
         keyData: {
             calorieCount: number
             proteinCount: number
@@ -40,6 +41,7 @@ export type userAverageSessions = {
         >
     }
 }
+
 
 export type userPerformance = {
     data: {

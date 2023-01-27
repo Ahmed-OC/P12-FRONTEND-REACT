@@ -20,8 +20,9 @@
 
     .objectif {
         position: absolute;
-        left: 83px;
-        top: 107px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -30%);
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 500;

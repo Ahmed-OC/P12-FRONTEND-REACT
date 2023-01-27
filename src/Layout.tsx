@@ -8,6 +8,9 @@ import style from "./Layout.module.scss";
 import proteinIcon from "./assets/icons/KeyData/protein.svg"
 
 function Layout() {
+  const queryParameters = new URLSearchParams(window.location.search)
+  const id =  Number(queryParameters.get("id"))
+  
   const activities = [
     {
       day: "2020-07-01",
@@ -69,8 +72,8 @@ function Layout() {
         </h1>
         <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
         <Activity activities={activities} />
-        <RadarCharts id={12} />
-        <RadialBarChart id={18} />
+        <RadarCharts id={id} />
+        <RadialBarChart id={id} />
         <KeyData icon={proteinIcon} value='155g' type='Proteines' backgroundColor='rgba(74, 184, 255, 0.1)'/>
       </div>
       <SideBar />

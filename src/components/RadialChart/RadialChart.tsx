@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import style from "./RadialChart.module.scss";
 import { Pie, PieChart, Cell, ResponsiveContainer } from "recharts";
-import { getUserById } from "../../api/User";
+import { user } from "../../types/user.type";
 
 type Props = {
-  id: number;
+  user : user | undefined;
 };
 
 type DataChart = {
@@ -13,23 +13,18 @@ type DataChart = {
   value: number;
 };
 
-function RadialChart({ id }: Props) {
+function RadialChart({ user }: Props) {
   const [dataUser, setDataUser] = useState<DataChart[]>([]);
   const [score, setScore] = useState<number>(0);
 
   useEffect(() => {
-    async function call() {
-      const data = await getUserById(id);
-      console.log(data);
-      const score = data.score || data.todayScore || 0;
+      const score = user?.score || user?.todayScore || 0;
       setScore(score);
       setDataUser([
         { id: "1", name: "L1", value: 100 - score * 100 },
         { id: "2", name: "L2", value: score * 100 },
       ]);
-    }
-    call();
-  }, [id]);
+  }, [user]);
 
   return (
     <div className={style.RadialChart}>

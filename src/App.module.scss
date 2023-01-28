@@ -1,0 +1,42 @@
+.App {
+    > h1 {
+      font-size: 48px;
+      font-weight: 500;
+      line-height: 24px;
+      letter-spacing: 0px;
+      text-align: left;
+      margin-bottom: 40px;
+      > span {
+        color: #ff0101;
+      }
+    }
+    > p {
+      font-family: Roboto;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0px;
+      margin-bottom: 77px;
+    }
+    .Grid{
+      &1 {
+          display: flex;
+          gap : 30px 30px;
+          flex-wrap: wrap;
+      }
+    }
+    .keyDatasContainer {
+      display: flex;
+      flex-direction: column; 
+      gap : 39px;
+    }
+    .chartsContainer {
+      display: flex;
+      flex-direction: column; 
+      gap : 30px;
+      >div {
+        display: flex;
+        gap: 30px;
+      }
+    }
+  }

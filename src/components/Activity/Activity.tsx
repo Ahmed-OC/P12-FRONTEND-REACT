@@ -38,7 +38,7 @@ function Activity({ activities }: { activities: any }) {
   return (
     <div className={style.Activity}>
       <h2>Activité quotidienne</h2>
-      <ResponsiveContainer width="100%" height={220}>
+      <ResponsiveContainer width="100%" height={260}>
         <BarChart
           width={700}
           height={300}

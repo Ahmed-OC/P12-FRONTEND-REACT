@@ -1,23 +1,10 @@
 .content {
-    padding-left: 107px;
+  padding-left: 107px;
   padding-top: 68px;
-  > h1 {
-    font-size: 48px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: 0px;
-    text-align: left;
-    margin-bottom: 40px;
-    > span {
-      color: #ff0101;
-    }
-  }
-  > p {
-    font-family: Roboto;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0px;
-    margin-bottom: 77px;
-  }
+}
+.Layout {
+  display: grid;
+  grid-template-columns: 117px 1fr;
+  grid-template-rows: 90px 1fr;
+  min-height: 100vh;
 }

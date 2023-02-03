@@ -9,12 +9,16 @@ import fatIcon from "./assets/icons/KeyDatas/fat.svg";
 import RadialChart from "./components/RadialChart/RadialChart";
 import style from "./App.module.scss";
 import { useEffect, useState, useMemo } from "react";
-import { getUserById } from "./api/User";
-import { user } from "./types/user.type";
+import { getUserById, getUserActivityById } from "./api/User";
+import { user, userActivity, formattedActivity } from "./types/user.type";
+import { formatActivityForChart } from "./formatters/Activity";
+
 function App() {
   const queryParameters = new URLSearchParams(window.location.search);
   const id = Number(queryParameters.get("id"));
   const [user, setUser] = useState<user>();
+  const [userActivity, setUserActivity] = useState<userActivity>()
+
   useEffect(() => {
     async function call() {
       const user = await getUserById(id);
@@ -22,6 +26,19 @@ function App() {
     }
     call();
   }, [id]);
+
+  useEffect(() => {
+    async function call() {
+      const userActivity = await getUserActivityById(id);
+      setUserActivity(userActivity);
+    }
+    call();
+  }, [id]);
+
+  const userFullName = useMemo(() => {
+    return `${user?.userInfos.firstName} ${user?.userInfos.lastName}`;
+  }, [user]);
+
   const keyDatas = useMemo(
     () => [
       {
@@ -51,63 +68,21 @@ function App() {
     ],
     [user]
   );
-  const activities = [
-    {
-      day: "2020-07-01",
-      kilogram: 70,
-      calories: 240,
-    },
-    {
-      day: "2020-07-02",
-      kilogram: 69,
-      calories: 220,
-    },
-    {
-      day: "2020-07-03",
-      kilogram: 70,
-      calories: 280,
-    },
-    {
-      day: "2020-07-04",
-      kilogram: 70,
-      calories: 500,
-    },
-    {
-      day: "2020-07-05",
-      kilogram: 69,
-      calories: 160,
-    },
-    {
-      day: "2020-07-06",
-      kilogram: 69,
-      calories: 162,
-    },
-    {
-      day: "2020-07-07",
-      kilogram: 69,
-      calories: 390,
-    },
-    {
-      day: "2020-07-05",
-      kilogram: 69,
-      calories: 160,
-    },
-    {
-      day: "2020-07-06",
-      kilogram: 69,
-      calories: 162,
-    },
-    {
-      day: "2020-07-07",
-      kilogram: 69,
-      calories: 390,
-    },
-  ];
+  const activities: formattedActivity | undefined = useMemo(
+    () => {
+      if (userActivity) {
+        return formatActivityForChart(userActivity)
+      }
+      return undefined
+    }
+    , [userActivity]);
 
   return (
     <div className={style.App}>
-      <h1>
-        Bonjour <span>Thomas</span>
+      {
+        id ? <>
+        <h1>
+        Bonjour <span>{userFullName}</span>
       </h1>
       <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       <div className={style.Grid1}>
@@ -129,6 +104,13 @@ function App() {
           ))}
         </div>
       </div>
+        </> : 
+        <>
+        <h1>Erreur : Utilisateur invalide</h1>
+        <a href="/?id=12">Lien vers un utilisateur valide</a>
+        </>
+      }
+      
     </div>
   );
 }

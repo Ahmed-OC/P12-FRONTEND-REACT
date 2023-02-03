@@ -23,6 +23,14 @@ export type user = {
       calories: number;
     }>;
   };
+
+  export type formattedActivity = Array<{
+    day: string;
+    kilogram: number;
+    calories: number;
+  }>;
+  
+  
   
   export type userAverageSessions = {
     userId: number;
@@ -40,3 +48,9 @@ export type user = {
       kind: number;
     }>;
   };
+
+export type formattedPerformance = Array<{
+  subject: string
+  A: number
+  fullMark: number
+}>;

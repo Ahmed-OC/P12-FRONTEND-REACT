@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react'
 import style from "./RadarCharts.module.scss";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, Label } from 'recharts';
 import { getUserPerformanceById } from '../../api/User';
+import { formatPerformanceForRadar } from '../../formatters/Performance';
 
 type Props = {
   id: number
@@ -22,9 +23,7 @@ function RadarCharts({ id }: Props) {
   useEffect(() => {
     async function call() {
       const data = await getUserPerformanceById(id)
-      const dataUser = data.data.map((element, index) => {
-        return { subject: kind[index], A: element.value, fullMark: 150 }
-      })
+      const dataUser = formatPerformanceForRadar(data)
       setDataUser(dataUser)
     }
     call()

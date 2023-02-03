@@ -1,5 +1,5 @@
 import style from "./Activity.module.scss";
-
+import { formattedActivity } from "../../types/user.type";
 import PropTypes from "prop-types"; // ES6
 import {
   BarChart,
@@ -33,8 +33,7 @@ const formatterLegend = (value: string, entry: any, index: any) => {
   );
 };
 
-function Activity({ activities }: { activities: any }) {
-  console.log(activities);
+function Activity({ activities }: { activities?: formattedActivity}) {
   return (
     <div className={style.Activity}>
       <h2>Activité quotidienne</h2>
@@ -42,7 +41,7 @@ function Activity({ activities }: { activities: any }) {
         <BarChart
           width={700}
           height={300}
-          data={activities.map((activity: any, index: number) => {
+          data={activities?.map((activity: any, index: number) => {
             return { ...activity, day: index + 1 };
           })}
           margin={{

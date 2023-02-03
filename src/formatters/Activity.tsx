@@ -3,6 +3,6 @@ import { userActivity, formattedActivity } from "../types/user.type";
 
 export const formatActivityForChart = (
     activity: userActivity
-): formattedActivity => {
+): formattedActivity[] => {
     return activity.sessions;
 };

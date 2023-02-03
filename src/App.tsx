@@ -12,6 +12,7 @@ import { useEffect, useState, useMemo } from "react";
 import { getUserById, getUserActivityById } from "./api/User";
 import { user, userActivity, formattedActivity } from "./types/user.type";
 import { formatActivityForChart } from "./formatters/Activity";
+import LinearChart from "./components/LinearChart/LinearChart";
 
 function App() {
   const queryParameters = new URLSearchParams(window.location.search);
@@ -68,7 +69,7 @@ function App() {
     ],
     [user]
   );
-  const activities: formattedActivity | undefined = useMemo(
+  const activities: formattedActivity[] | undefined = useMemo(
     () => {
       if (userActivity) {
         return formatActivityForChart(userActivity)
@@ -80,37 +81,37 @@ function App() {
   return (
     <div className={style.App}>
       {
-        id ? <>
-        <h1>
-        Bonjour <span>{userFullName}</span>
-      </h1>
-      <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
-      <div className={style.Grid1}>
-        <div className={style.chartsContainer}>
-          <Activity activities={activities} />
-          <div>
-            <RadarCharts id={id} />
-            <RadialChart user={user} />
+        user ? <>
+          <h1>
+            Bonjour <span>{userFullName}</span>
+          </h1>
+          <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+          <div className={style.Grid1}>
+            <div className={style.chartsContainer}>
+              <Activity activities={activities} />
+              <div className={style.Grid2}>
+                <LinearChart id={id} />
+                <RadarCharts id={id} />
+                <RadialChart user={user} />
+              </div>
+            </div>
+            <div className={style.keyDatasContainer}>
+              {keyDatas.map((keyData) => (
+                <KeyData
+                  icon={keyData.icon}
+                  value={keyData.value}
+                  type={keyData.type}
+                  backgroundColor={keyData.backgroundColor}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-        <div className={style.keyDatasContainer}>
-          {keyDatas.map((keyData) => (
-            <KeyData
-              icon={keyData.icon}
-              value={keyData.value}
-              type={keyData.type}
-              backgroundColor={keyData.backgroundColor}
-            />
-          ))}
-        </div>
-      </div>
-        </> : 
-        <>
-        <h1>Erreur : Utilisateur invalide</h1>
-        <a href="/?id=12">Lien vers un utilisateur valide</a>
-        </>
+        </> :
+          <>
+            <h1>Erreur : Utilisateur invalide</h1>
+          </>
       }
-      
+
     </div>
   );
 }

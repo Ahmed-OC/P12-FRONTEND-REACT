@@ -24,11 +24,11 @@ export type user = {
     }>;
   };
 
-  export type formattedActivity = Array<{
+  export type formattedActivity = {
     day: string;
     kilogram: number;
     calories: number;
-  }>;
+  };
   
   
   
@@ -49,8 +49,8 @@ export type user = {
     }>;
   };
 
-export type formattedPerformance = Array<{
+export type formattedPerformance = {
   subject: string
   A: number
   fullMark: number
-}>;
+};

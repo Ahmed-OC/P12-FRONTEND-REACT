@@ -33,13 +33,12 @@ const formatterLegend = (value: string, entry: any, index: any) => {
   );
 };
 
-function Activity({ activities }: { activities?: formattedActivity}) {
+function Activity({ activities }: { activities?: formattedActivity[]}) {
   return (
     <div className={style.Activity}>
       <h2>Activité quotidienne</h2>
       <ResponsiveContainer width="100%" height={260}>
         <BarChart
-          width={700}
           height={300}
           data={activities?.map((activity: any, index: number) => {
             return { ...activity, day: index + 1 };

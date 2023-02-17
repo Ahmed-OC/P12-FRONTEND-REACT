@@ -2,6 +2,7 @@ import style from "./LinearChart.module.scss";
 import { useEffect, useMemo, useState } from "react";
 import { getUserAverageSessionsById } from "../../api/User";
 import { userAverageSessions } from "../../types/user.type";
+import { formatSessions } from "../../formatters/AverageSessions";
 import {
   LineChart,
   Line,
@@ -14,8 +15,6 @@ import {
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
-    console.log(payload);
-
     return (
       <div className={style.customTooltip}>
         <p className="label">{`${payload[0].value}min`}</p>
@@ -47,14 +46,8 @@ function LinearChart({ id }: { id: number }) {
     call();
   }, [id]);
   const data = useMemo(() => {
-    const daysArray = ["L", "M", "M", "J", "V", "S", "D"];
     if (averageSessions) {
-      return averageSessions.sessions.map((session, index) => {
-        return {
-          name: daysArray[index],
-          uv: session.sessionLength,
-        };
-      });
+      return formatSessions(averageSessions)
     }
   }, [averageSessions]);
 

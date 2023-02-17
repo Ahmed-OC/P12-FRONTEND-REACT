@@ -1,29 +1,26 @@
 import { useEffect, useState } from "react";
 import style from "./RadialChart.module.scss";
 import { Pie, PieChart, Cell, ResponsiveContainer } from "recharts";
-import { user } from "../../types/user.type";
+import { user, formattedUserRadial } from "../../types/user.type";
+import { formatRadialChart } from "../../formatters/User";
 
 type Props = {
-  user : user | undefined;
+  user: user | undefined;
 };
 
-type DataChart = {
-  id: string;
-  name: string;
-  value: number;
-};
 
 function RadialChart({ user }: Props) {
-  const [dataUser, setDataUser] = useState<DataChart[]>([]);
+  const [dataUser, setDataUser] = useState<formattedUserRadial[]>([]);
   const [score, setScore] = useState<number>(0);
 
   useEffect(() => {
-      const score = user?.score || user?.todayScore || 0;
-      setScore(score);
-      setDataUser([
-        { id: "1", name: "L1", value: 100 - score * 100 },
-        { id: "2", name: "L2", value: score * 100 },
-      ]);
+    const score = user?.score || user?.todayScore || 0;
+    setScore(score);
+    if (user) {
+      setDataUser(
+        formatRadialChart(user)
+      );
+    }
   }, [user]);
 
   return (

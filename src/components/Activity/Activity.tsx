@@ -111,6 +111,12 @@ function Activity({ activities }: { activities?: formattedActivity[]}) {
 }
 
 Activity.propTypes = {
-  activities: PropTypes.arrayOf(PropTypes.object).isRequired,
+  activities: PropTypes.arrayOf(
+    PropTypes.shape({
+      day: PropTypes.string,
+      kilogram: PropTypes.number,
+      calories: PropTypes.number,
+    })
+  ).isRequired,
 };
 export default Activity;

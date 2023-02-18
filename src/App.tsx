@@ -36,10 +36,6 @@ function App() {
     call();
   }, [id]);
 
-  const userFullName = useMemo(() => {
-    return `${user?.userInfos.firstName} ${user?.userInfos.lastName}`;
-  }, [user]);
-
   const keyDatas = useMemo(
     () => [
       {
@@ -83,7 +79,7 @@ function App() {
       {
         user ? <>
           <h1>
-            Bonjour <span>{userFullName}</span>
+            Bonjour <span>{user.userInfos.firstName}</span>
           </h1>
           <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
           <div className={style.Grid1}>

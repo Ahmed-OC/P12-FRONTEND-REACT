@@ -8,6 +8,12 @@ type Props = {
   user: user | undefined;
 };
 
+/**
+ * 
+ * @description Component RadialChart permit to display a radial chart with the percentage of the user's score
+ * @param {user} user
+ * @returns 
+ */
 
 function RadialChart({ user }: Props) {
   const [dataUser, setDataUser] = useState<formattedUserRadial[]>([]);

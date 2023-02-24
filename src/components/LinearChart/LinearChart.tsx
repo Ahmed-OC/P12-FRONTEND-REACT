@@ -2,7 +2,7 @@ import style from "./LinearChart.module.scss";
 import { useEffect, useMemo, useState } from "react";
 import { getUserAverageSessionsById } from "../../api/User";
 import { userAverageSessions } from "../../types/user.type";
-import { formatSessions } from "../../formatters/AverageSessions";
+import formatSessions from "../../formatters/AverageSessions";
 import {
   LineChart,
   Line,
@@ -12,13 +12,14 @@ import {
   ResponsiveContainer,
   Rectangle,
 } from "recharts";
+import PropTypes from "prop-types";
 
 /**
  * @description Component CustomTooltip permit to generate a custom tooltip for the linear Chart
  * @param {Object} props - props
  * @param {boolean} props.active - boolean to know if the tooltip is visible
  * @param {Array} props.payload - Get the barchart data of the hovered element
- * @returns {JSX.Element || null}
+ * @returns {JSX.Element | null}
  */
 
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -141,5 +142,9 @@ function LinearChart({ id }: { id: number }) {
     </div>
   );
 }
+
+LinearChart.propTypes = {
+  id: PropTypes.number.isRequired,
+};
 
 export default LinearChart;

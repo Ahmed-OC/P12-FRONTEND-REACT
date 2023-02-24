@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: App.tsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: App.tsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import "./App.css";
+import Activity from "./components/Activity/Activity";
+import KeyData from "./components/KeyData/KeyData";
+import RadarCharts from "./components/RadarChart/RadarCharts";
+import proteinIcon from "./assets/icons/KeyDatas/protein.svg";
+import caloriesIcon from "./assets/icons/KeyDatas/calories.svg";
+import carbsIcon from "./assets/icons/KeyDatas/carbs.svg";
+import fatIcon from "./assets/icons/KeyDatas/fat.svg";
+import RadialChart from "./components/RadialChart/RadialChart";
+import style from "./App.module.scss";
+import { useEffect, useState, useMemo } from "react";
+import { getUserById, getUserActivityById } from "./api/User";
+import { user, userActivity, formattedActivity } from "./types/user.type";
+import formatActivityForChart from "./formatters/Activity";
+import LinearChart from "./components/LinearChart/LinearChart";
+
+/**
+ * @description Function App permit to display the Home page of the app
+ * @returns {JSX.Element}
+ */
+
+function App() {
+  const queryParameters = new URLSearchParams(window.location.search);
+  const id = Number(queryParameters.get("id"));
+  const [user, setUser] = useState&lt;user>();
+  const [userActivity, setUserActivity] = useState&lt;userActivity>()
+
+  useEffect(() => {
+    async function call() {
+      const user = await getUserById(id);
+      setUser(user);
+    }
+    call();
+  }, [id]);
+
+  useEffect(() => {
+    async function call() {
+      const userActivity = await getUserActivityById(id);
+      setUserActivity(userActivity);
+    }
+    call();
+  }, [id]);
+
+  const keyDatas = useMemo(
+    () => [
+      {
+        icon: caloriesIcon,
+        value: `${user?.keyData.calorieCount}kcal`,
+        type: "Calories",
+        backgroundColor: "rgba(255, 0, 0, 0.1)",
+      },
+      {
+        icon: proteinIcon,
+        value: `${user?.keyData.proteinCount}g`,
+        type: "Proteines",
+        backgroundColor: "rgba(74, 184, 255, 0.1)",
+      },
+      {
+        icon: carbsIcon,
+        value: `${user?.keyData.carbohydrateCount}g`,
+        type: "Glucides",
+        backgroundColor: "rgba(249, 206, 35, 0.1)",
+      },
+      {
+        icon: fatIcon,
+        value: `${user?.keyData.lipidCount}g`,
+        type: "Lipides",
+        backgroundColor: "rgba(253, 81, 129, 0.1)",
+      },
+    ],
+    [user]
+  );
+  const activities: formattedActivity[] | undefined = useMemo(
+    () => {
+      if (userActivity) {
+        return formatActivityForChart(userActivity)
+      }
+      return undefined
+    }
+    , [userActivity]);
+
+  return (
+    &lt;div className={style.App}>
+      {
+        user ? &lt;>
+          &lt;h1>
+            Bonjour &lt;span>{user.userInfos.firstName}&lt;/span>
+          &lt;/h1>
+          &lt;p>Félicitation ! Vous avez explosé vos objectifs hier 👏&lt;/p>
+          &lt;div className={style.Grid1}>
+            &lt;div className={style.chartsContainer}>
+              &lt;Activity activities={activities} />
+              &lt;div className={style.Grid2}>
+                &lt;LinearChart id={id} />
+                &lt;RadarCharts id={id} />
+                &lt;RadialChart user={user} />
+              &lt;/div>
+            &lt;/div>
+            &lt;div className={style.keyDatasContainer}>
+              {keyDatas.map((keyData) => (
+                &lt;KeyData
+                  icon={keyData.icon}
+                  value={keyData.value}
+                  type={keyData.type}
+                  backgroundColor={keyData.backgroundColor}
+                />
+              ))}
+            &lt;/div>
+          &lt;/div>
+        &lt;/> :
+          &lt;>
+            &lt;h1>Erreur : Utilisateur invalide&lt;/h1>
+          &lt;/>
+      }
+
+    &lt;/div>
+  );
+}
+
+export default App;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Activity">Activity</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#Layout">Layout</a></li><li><a href="global.html#LinearChart">LinearChart</a></li><li><a href="global.html#RadarCharts">RadarCharts</a></li><li><a href="global.html#RadialChart">RadialChart</a></li><li><a href="global.html#SideBar">SideBar</a></li><li><a href="global.html#formatActivityForChart">formatActivityForChart</a></li><li><a href="global.html#formatPerformanceForRadar">formatPerformanceForRadar</a></li><li><a href="global.html#formatRadialChart">formatRadialChart</a></li><li><a href="global.html#formatSessions">formatSessions</a></li><li><a href="global.html#formatterLegend">formatterLegend</a></li><li><a href="global.html#getUserActivityById">getUserActivityById</a></li><li><a href="global.html#getUserAverageSessionsById">getUserAverageSessionsById</a></li><li><a href="global.html#getUserById">getUserById</a></li><li><a href="global.html#getUserPerformanceById">getUserPerformanceById</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Fri Feb 24 2023 19:59:40 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

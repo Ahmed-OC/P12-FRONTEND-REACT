@@ -11,8 +11,13 @@ import style from "./App.module.scss";
 import { useEffect, useState, useMemo } from "react";
 import { getUserById, getUserActivityById } from "./api/User";
 import { user, userActivity, formattedActivity } from "./types/user.type";
-import { formatActivityForChart } from "./formatters/Activity";
+import formatActivityForChart from "./formatters/Activity";
 import LinearChart from "./components/LinearChart/LinearChart";
+
+/**
+ * @description Function App permit to display the Home page of the app
+ * @returns {JSX.Element}
+ */
 
 function App() {
   const queryParameters = new URLSearchParams(window.location.search);

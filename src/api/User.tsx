@@ -12,9 +12,15 @@ import {
   mockGetUserActivityById,
   mockGetUserPerformanceById,
 } from "../__mocks__/User";
+
+/**
+ * @description Function getUserById permit to get the user by id
+ * @param {number} id
+ * @returns {Promise<user>}
+ */
+
 export async function getUserById(id: number): Promise<user> {
   try {
-    console.log(env.ENVIRONMENT);
     if (env.ENVIRONMENT === "production") {
       const { data } = await axios.get(`${env.API_URL}user/${id}`);
       return data.data;
@@ -25,6 +31,13 @@ export async function getUserById(id: number): Promise<user> {
     throw new Error();
   }
 }
+
+/**
+ * @description Function getUserActivityById permit to get the activity of the user by id
+ * @param {number} id
+ * @returns {Promise<userActivity>}
+ *
+ */
 
 export async function getUserActivityById(id: number): Promise<userActivity> {
   try {
@@ -38,6 +51,13 @@ export async function getUserActivityById(id: number): Promise<userActivity> {
     throw new Error();
   }
 }
+
+/**
+ * @description Function getUserAverageSessionsById permit to get the average sessions of the user by id
+ * @param {number} id
+ * @returns {Promise<userAverageSessions>}
+ *
+ */
 
 export async function getUserAverageSessionsById(
   id: number
@@ -55,6 +75,13 @@ export async function getUserAverageSessionsById(
     throw new Error();
   }
 }
+
+/**
+ * @description Function getUserPerformanceById permit to get the performance of the user by id
+ * @param {number} id
+ * @returns {Promise<userPerformance>}
+ *
+ */
 
 export async function getUserPerformanceById(
   id: number

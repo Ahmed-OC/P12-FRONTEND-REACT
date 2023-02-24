@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/RadarChart/RadarCharts.tsx</title>
+    <title>JSDoc: Source: formatters/User.tsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/RadarChart/RadarCharts.tsx</h1>
+    <h1 class="page-title">Source: formatters/User.tsx</h1>
 
     
 
@@ -26,58 +26,23 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState, useMemo } from 'react'
-import style from "./RadarCharts.module.scss";
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, Label } from 'recharts';
-import { getUserPerformanceById } from '../../api/User';
-import formatPerformanceForRadar from '../../formatters/Performance';
-import PropTypes from "prop-types";
-
-type Props = {
-  id: number
-}
-type dataCharts = {
-  subject: string
-  A: number
-  fullMark: number
-}
+            <pre class="prettyprint source linenums"><code>import { user, formattedUserRadial } from "../types/user.type";
 
 /**
- * @description Component RadarChart permit to display a radar chart with the user's performance data
- * @param {number} id
+ * @description Function formatRadialChart permit to format the score of the user for the Radial chart and get only info on score
+ * @param {user} user
+ * @returns {formattedUserRadial[]}
  */
+const formatRadialChart = (
+    user: user
+): formattedUserRadial[] => {
+    const score = user?.score || user?.todayScore || 0;
 
-function RadarCharts({ id }: Props) {
-  const [dataUser, setDataUser] = useState&lt;dataCharts[]>([])
-
-  useEffect(() => {
-    async function call() {
-      const data = await getUserPerformanceById(id)
-      const dataUser = formatPerformanceForRadar(data)
-      setDataUser(dataUser)
-    }
-    call()
-  }, [id])
-
-  return (
-    &lt;div className={style.RadarCharts}>
-      &lt;ResponsiveContainer width="100%" height="100%">
-        &lt;RadarChart cx="50%" cy="50%" width={180} height={180} outerRadius="60%" data={dataUser}>
-          &lt;PolarGrid gridType='polygon' radialLines={false} fill="white" fillOpacity={1} />
-          &lt;PolarAngleAxis dataKey="subject" tick={{ fill: '#FFFFFF', fontFamily: "Roboto", fontSize: "12px", fontWeight: "500" }} tickLine={false} />
-          &lt;Radar name="Mike" dataKey="A" stroke="#FF0101" fill="#FF0101" fillOpacity={0.7} />
-          &lt;Label position="outside" style={{ fill: "red" }} />
-        &lt;/RadarChart>
-      &lt;/ResponsiveContainer>
-    &lt;/div>
-  )
-}
-
-RadarCharts.propTypes = {
-  id: PropTypes.number.isRequired,
+    return [{ id: "1", name: "L1", value: 100 - score * 100 },
+    { id: "2", name: "L2", value: score * 100 },]
 };
 
-export default RadarCharts</code></pre>
+export default formatRadialChart</code></pre>
         </article>
     </section>
 

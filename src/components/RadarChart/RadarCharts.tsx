@@ -2,7 +2,8 @@ import React, { useEffect, useState, useMemo } from 'react'
 import style from "./RadarCharts.module.scss";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer, Label } from 'recharts';
 import { getUserPerformanceById } from '../../api/User';
-import { formatPerformanceForRadar } from '../../formatters/Performance';
+import formatPerformanceForRadar from '../../formatters/Performance';
+import PropTypes from "prop-types";
 
 type Props = {
   id: number
@@ -43,5 +44,9 @@ function RadarCharts({ id }: Props) {
     </div>
   )
 }
+
+RadarCharts.propTypes = {
+  id: PropTypes.number.isRequired,
+};
 
 export default RadarCharts

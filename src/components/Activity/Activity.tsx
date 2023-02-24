@@ -17,7 +17,7 @@ import {
  * @param {Object} props - props
  * @param {boolean} props.active - boolean to know if the tooltip is visible
  * @param {Array} props.payload - Get the barchart data of the hovered element
- * @returns {JSX.Element || null}
+ * @returns {JSX.Element | null}
  */
 
 const CustomTooltip = ({ active, payload }: any) => {

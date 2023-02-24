@@ -13,6 +13,11 @@ type dataCharts = {
   fullMark: number
 }
 
+/**
+ * @description Component RadarChart permit to display a radar chart with the user's performance data
+ * @param {number} id
+ */
+
 function RadarCharts({ id }: Props) {
   const [dataUser, setDataUser] = useState<dataCharts[]>([])
 

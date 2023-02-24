@@ -1,5 +1,14 @@
 import style from "./KeyData.module.scss";
 
+/**
+ * @description Component KeyData permit to display a KeyData with user's data
+ * @param {Object} props - Props
+ * @param {string} props.icon - icon of the keyData
+ * @param {string} props.type - type of the keyData
+ * @param {string} props.value - value of the keyData
+ * @param {string} props.backgroundColor - background color of the keyData
+ */
+
 function KeyData({ icon, type, value, backgroundColor }: { icon: string, type: string, value: string, backgroundColor: string }) {
     return (
         <div className={style.KeyData}>

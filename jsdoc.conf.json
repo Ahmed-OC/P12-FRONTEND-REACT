@@ -20,12 +20,12 @@
     ],
     "templates": {
         "better-docs": {
-            "name": "Your App Name"
+            "name": "Sportsee"
         }
     },
     "opts": {
         "destination": "docs",
         "recurse": true,
-        "readme": "README"
+        "readme": "README.md"
     }
 }

@@ -6,7 +6,6 @@ import App from "./App";
 /**
  * @description
  * Display the layout of the application
- * @returns {JSX.Element}
  */
 function Layout() {
   return (

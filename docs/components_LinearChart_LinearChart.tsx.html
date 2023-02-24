@@ -1,4 +1,32 @@
-import style from "./LinearChart.module.scss";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/LinearChart/LinearChart.tsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/LinearChart/LinearChart.tsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import style from "./LinearChart.module.scss";
 import { useEffect, useMemo, useState } from "react";
 import { getUserAverageSessionsById } from "../../api/User";
 import { userAverageSessions } from "../../types/user.type";
@@ -13,35 +41,20 @@ import {
   Rectangle,
 } from "recharts";
 
-/**
- * @description Component CustomTooltip permit to generate a custom tooltip for the linear Chart
- * @param {Object} props - props
- * @param {boolean} props.active - boolean to know if the tooltip is visible
- * @param {Array} props.payload - Get the barchart data of the hovered element
- * @returns {JSX.Element || null}
- */
-
 const CustomTooltip = ({ active, payload, label }: any) => {
-  if (active && payload && payload.length) {
+  if (active &amp;&amp; payload &amp;&amp; payload.length) {
     return (
-      <div className={style.customTooltip}>
-        <p className="label">{`${payload[0].value}min`}</p>
-      </div>
+      &lt;div className={style.customTooltip}>
+        &lt;p className="label">{`${payload[0].value}min`}&lt;/p>
+      &lt;/div>
     );
   }
 
   return null;
 };
-
-/**
- * @description Component CustomCursor permit to show a darker background after the hovered element
- * @param {Array} points - Array of coordinate of the tooltip
- * @returns {React.Component}
- */
 const CustomCursor = ({ points }: any) => {
-  console.log(points)
   return (
-    <Rectangle
+    &lt;Rectangle
       fill="#000000"
       opacity={0.1}
       x={points[1].x}
@@ -57,7 +70,7 @@ const CustomCursor = ({ points }: any) => {
  */
 
 function LinearChart({ id }: { id: number }) {
-  const [averageSessions, setAverageSessions] = useState<userAverageSessions>();
+  const [averageSessions, setAverageSessions] = useState&lt;userAverageSessions>();
 
   useEffect(() => {
     async function call() {
@@ -73,9 +86,9 @@ function LinearChart({ id }: { id: number }) {
   }, [averageSessions]);
 
   return (
-    <div className={style.LinearChart}>
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart
+    &lt;div className={style.LinearChart}>
+      &lt;ResponsiveContainer width="100%" height="100%">
+        &lt;LineChart
           width={500}
           height={300}
           data={data}
@@ -86,7 +99,7 @@ function LinearChart({ id }: { id: number }) {
             bottom: 5,
           }}
         >
-          <XAxis
+          &lt;XAxis
             dataKey="name"
             axisLine={false}
             tickLine={false}
@@ -97,34 +110,34 @@ function LinearChart({ id }: { id: number }) {
               fontWeight: "500",
             }}
           />
-          <YAxis
+          &lt;YAxis
             axisLine={false}
             hide={true}
             tickLine={false}
             tick={false}
             domain={["dataMin - 20", "dataMax + 20"]}
           />
-          <Tooltip
-            content={<CustomTooltip />}
+          &lt;Tooltip
+            content={&lt;CustomTooltip />}
             wrapperStyle={{ outline: "none" }}
-            cursor={<CustomCursor />}
+            cursor={&lt;CustomCursor />}
           />
-          <Line
+          &lt;Line
             type="monotone"
             dataKey="uv"
             stroke="rgba(255,255,255, 0.42)"
             strokeWidth={3}
             dot={false}
           />
-          <text
+          &lt;text
             x="8%"
             y="18%"
             fill="#FFFFFF"
             style={{ fontSize: 15, fontWeight: 500, opacity: 0.5 }}
           >
             Durée moyenne des
-          </text>
-          <text
+          &lt;/text>
+          &lt;text
             x="8%"
             y="25%"
             fill="#FFFFFF"
@@ -135,11 +148,33 @@ function LinearChart({ id }: { id: number }) {
             }}
           >
             sessions
-          </text>
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
+          &lt;/text>
+        &lt;/LineChart>
+      &lt;/ResponsiveContainer>
+    &lt;/div>
   );
 }
 
-export default LinearChart;
+export default LinearChart;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Activity">Activity</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#Layout">Layout</a></li><li><a href="global.html#LinearChart">LinearChart</a></li><li><a href="global.html#RadarCharts">RadarCharts</a></li><li><a href="global.html#RadialChart">RadialChart</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Fri Feb 24 2023 18:21:26 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

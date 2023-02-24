@@ -1,4 +1,32 @@
-import style from "./Activity.module.scss";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Activity/Activity.tsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Activity/Activity.tsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import style from "./Activity.module.scss";
 import { formattedActivity } from "../../types/user.type";
 import PropTypes from "prop-types"; // ES6
 import {
@@ -13,37 +41,31 @@ import {
 } from "recharts";
 
 /**
- * @description Component CustomTooltip permit to generate a custom tooltip for the barchart
+ * @description Component CustomTooltip permit to generate a tooltip for the barchart
  * @param {Object} props - props
  * @param {boolean} props.active - boolean to know if the tooltip is visible
  * @param {Array} props.payload - Get the barchart data of the hovered element
- * @returns {JSX.Element || null}
+ * @returns {JSX.Element}
  */
 
 const CustomTooltip = ({ active, payload }: any) => {
-  if (active && payload && payload.length) {
+  if (active &amp;&amp; payload &amp;&amp; payload.length) {
     return (
-      <div className={style.customTooltip}>
-        <p className="label">{`${payload[0].value}kg`}</p>
-        <p className="label">{`${payload[1].value}Kcal`}</p>
-      </div>
+      &lt;div className={style.customTooltip}>
+        &lt;p className="label">{`${payload[0].value}kg`}&lt;/p>
+        &lt;p className="label">{`${payload[1].value}Kcal`}&lt;/p>
+      &lt;/div>
     );
   }
 
   return null;
 };
 
-/**
- * @description Component formatterLegend permit to return a custom legend for the bar chart
- * @param {number} index - index of the legend
- * @returns {JSX.Element}
- */
-
-const formatterLegend = (__value: string, __entry: any, index: any) => {
+const formatterLegend = (value: string, entry: any, index: any) => {
   return (
-    <span className={style.customizedLegend} style={{ color: "#74798C" }}>
+    &lt;span className={style.customizedLegend} style={{ color: "#74798C" }}>
       {index === 0 ? "Poids (kg)" : "Calories brûlées (kCal)"}
-    </span>
+    &lt;/span>
   );
 };
 
@@ -54,10 +76,10 @@ const formatterLegend = (__value: string, __entry: any, index: any) => {
 
 function Activity({ activities }: { activities?: formattedActivity[]}) {
   return (
-    <div className={style.Activity}>
-      <h2>Activité quotidienne</h2>
-      <ResponsiveContainer width="100%" height={260}>
-        <BarChart
+    &lt;div className={style.Activity}>
+      &lt;h2>Activité quotidienne&lt;/h2>
+      &lt;ResponsiveContainer width="100%" height={260}>
+        &lt;BarChart
           height={300}
           data={activities?.map((activity: any, index: number) => {
             return { ...activity, day: index + 1 };
@@ -70,13 +92,13 @@ function Activity({ activities }: { activities?: formattedActivity[]}) {
           }}
           title="Activité quotidienne"
         >
-          <CartesianGrid
+          &lt;CartesianGrid
             strokeDasharray="2 2"
             horizontal={true}
             vertical={false}
           />
-          <XAxis dataKey="day" tickLine={false} />
-          <YAxis
+          &lt;XAxis dataKey="day" tickLine={false} />
+          &lt;YAxis
             yAxisId="left"
             orientation="left"
             stroke="#8884d8"
@@ -87,7 +109,7 @@ function Activity({ activities }: { activities?: formattedActivity[]}) {
             hide
             tickCount={3}
           />
-          <YAxis
+          &lt;YAxis
             yAxisId="right"
             orientation="right"
             stroke="#9B9EAC"
@@ -97,11 +119,11 @@ function Activity({ activities }: { activities?: formattedActivity[]}) {
             tickLine={false}
             dataKey="kilogram"
           />
-          <Tooltip
-            content={<CustomTooltip />}
+          &lt;Tooltip
+            content={&lt;CustomTooltip />}
             wrapperStyle={{ outline: "none" }}
           />
-          <Legend
+          &lt;Legend
             verticalAlign="top"
             align="right"
             wrapperStyle={{ top: 0, right: 26 }}
@@ -109,23 +131,23 @@ function Activity({ activities }: { activities?: formattedActivity[]}) {
             iconType="circle"
             iconSize={8}
           />
-          <Bar
+          &lt;Bar
             yAxisId="right"
             dataKey="kilogram"
             fill="#282D30"
             radius={[3, 3, 0, 0]}
             barSize={7}
           />
-          <Bar
+          &lt;Bar
             yAxisId="left"
             dataKey="calories"
             fill="#E60000"
             barSize={7}
             radius={[3, 3, 0, 0]}
           />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+        &lt;/BarChart>
+      &lt;/ResponsiveContainer>
+    &lt;/div>
   );
 }
 
@@ -138,4 +160,26 @@ Activity.propTypes = {
     })
   ).isRequired,
 };
-export default Activity;
+export default Activity;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Activity">Activity</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#Layout">Layout</a></li><li><a href="global.html#LinearChart">LinearChart</a></li><li><a href="global.html#RadarCharts">RadarCharts</a></li><li><a href="global.html#RadialChart">RadialChart</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Fri Feb 24 2023 18:21:26 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

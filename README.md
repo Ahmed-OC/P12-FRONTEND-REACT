@@ -1,5 +1,11 @@
 # Getting Started with Project 12
 
+## Pre-requisite
+- Node : > v14.17.3
+- Npm : > 8.4.0
+- React: > 18.2.0
+- React Router : > 6.4.4
+
 ## 1. Create a directory for the project
 
 First, you need to create a directory for the project
@@ -14,6 +20,7 @@ You need to install it at the root of the project
 You need to start the backend server as indicated in the previous link
 
 ## 4. Install the frontend 
+prequirisite node v14.17.3
 1) In the project directory, you have to clone this repo
 2) Run `npm install` at the root of the frontend
 3) fill the .env like that : 

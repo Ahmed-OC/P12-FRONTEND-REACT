@@ -99,6 +99,7 @@ function App() {
             <div className={style.keyDatasContainer}>
               {keyDatas.map((keyData) => (
                 <KeyData
+                  key={keyData.type}
                   icon={keyData.icon}
                   value={keyData.value}
                   type={keyData.type}
